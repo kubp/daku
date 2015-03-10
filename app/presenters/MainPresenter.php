@@ -12,9 +12,17 @@ use Nette,
 class MainPresenter extends BasePresenter
 {
 
+
     public function renderDefault()
     {
-        //$this->template->text = 'any value';
+        $data=$this->context->item->data();
+        $this->template->items = $data;
+    }
+
+    public function renderLogin()
+    {
+        $data=$this->context->item->data();
+        $this->template->items = $data;
     }
 
 }

@@ -1,2 +1,13 @@
 {block content}
-<h1>Welcome</h1>
+<h1>Welcome to eshop</h1>
+
+<div n:foreach="$items as $key => $item">
+
+<a n:href="Item: $item">{$item}</a>
+
+</div>
+<br><br><hr>
+
+<a n:href="Category:">Kategorie</a>
+<br><br><hr>
+<a n:href="Login:">Prihlaseni</a>

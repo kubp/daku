@@ -24,3 +24,4 @@ nette:
 services:
 	- App\Model\UserManager
 	router: App\RouterFactory::createRouter
+	item : App\Model\ItemList
