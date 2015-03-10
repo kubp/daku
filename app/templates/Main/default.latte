@@ -3,7 +3,9 @@
 
 <div n:foreach="$items as $key => $item">
 
-<a n:href="Item: $item">{$item}</a>
+<a n:href="Item:default $item->item_id,$item->item_name">{$item->item_name}</a>
+<a n:href="Category:default $item->category">{$item->category}</a>
+{$item->price},-
 
 </div>
 <br><br><hr>

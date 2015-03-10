@@ -9,7 +9,7 @@ use Nette,
 /**
  * Homepage presenter.
  */
-class LoginPresenter extends BasePresenter
+class RegisterPresenter extends BasePresenter
 {
 
 
@@ -19,16 +19,21 @@ class LoginPresenter extends BasePresenter
 
     }
 
-    protected function createComponentPrihlaseniForm()
+    protected function createComponentRegistraceForm()
     {
         $form = new Form;
 
-        $form->addText('name', 'E-mail')
+        $form->addText('names', 'E-mail')
             ->setRequired("Jméno je povinné");
 
 
-        $form->addPassword('password', 'Heslo:')->setRequired("Heslo je povinne");
+        $form->addText('name', 'E-mail')
+            ->setRequired("Jméno je povinné")
 
+            ->addRule(Form::EMAIL, 'Váš email nebyl zadán spávně.');
+
+        $form->addPassword('password', 'Heslo:')->setRequired("Heslo je povinne")
+            ->addRule(Form::MIN_LENGTH, 'Heslo musí mít alespoň %d znaky', 3);
 
         $form->addSubmit('send', 'Login');
         $form->onSuccess[] = array($this, 'commentFormSucceeded');

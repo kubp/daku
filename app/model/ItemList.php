@@ -3,16 +3,17 @@ namespace App\Model;
 use Nette;
 
 
-class ItemList{
+class ItemList extends MainModel{
 
-	private $items;
-	private function get(){
-		  $this->items = array("batoh","skrin","zead","mas");
-		  return  $this->items;
+	public $items;
+	public function getAllItems(){
+		$items=$this->findAll("item");
+		return  $items;
 	}
-	public function data(){
-		$this->items = array("batoh","skrin","zead","mas");
-		return  $this->items;
+
+	public function getDetail($id){
+		return $this->findOneId("item",$id);
+
 	}
 
 }

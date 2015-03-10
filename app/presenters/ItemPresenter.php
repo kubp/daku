@@ -13,12 +13,15 @@ class ItemPresenter extends BasePresenter
 {
 
 
-    public function renderDefault($item)
+    public function renderDefault($item,  $itemname)
     {
-        $this->template->item = $item;
+        $data=$this->context->item->getDetail($item);
+        $this->template->items = $data;
+
+
     }
 
-      public function renderObjednat($id)
+    public function renderObjednat($id)
     {
         //$this->template->text = 'any value';
     }
