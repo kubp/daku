@@ -27,7 +27,7 @@ class RouterFactory
 
 		$router = new RouteList();
 		$router[] = new Route('item[/<item>-<itemname>]', 'Item:default');
-		$router[] = new Route('category[/<category>]', 'Category:default');
+		$router[] = new Route('category[/s]', 'Category:default');
 		$router[] = new Route('login', 'Login:default');
 		$router[] = new Route('register', 'Register:default');
 		$router[] = new Route('<presenter>/<action>[/<id>]', 'Main:default');
