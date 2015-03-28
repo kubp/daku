@@ -5,7 +5,7 @@ namespace App\Presenters;
 use Nette,
     Nette\Application\UI\Form;
 
-
+use Tracy\Debugger;
 /**
  * Homepage presenter.
  */
@@ -23,19 +23,22 @@ class RegisterPresenter extends BasePresenter
     {
         $form = new Form;
 
-        $form->addText('names', 'E-mail')
-            ->setRequired("Jméno je povinné");
-
-
-        $form->addText('name', 'E-mail')
+        $form->addText('name', 'Jméno')
             ->setRequired("Jméno je povinné")
+            ->addRule(Form::MIN_LENGTH, 'Jméno musí mít minimálně %d znaků', 5)
+            ->addRule(Form::MAX_LENGTH, 'Maximalni delka je %d znaků', 150);
 
+        $form->addText('email', 'E-mail')
+            ->setRequired("Jméno je povinné")
+            ->addRule(Form::MAX_LENGTH, 'Maximalni delka je %d znaků', 100)
             ->addRule(Form::EMAIL, 'Váš email nebyl zadán spávně.');
 
-        $form->addPassword('password', 'Heslo:')->setRequired("Heslo je povinne")
-            ->addRule(Form::MIN_LENGTH, 'Heslo musí mít alespoň %d znaky', 3);
 
-        $form->addSubmit('send', 'Login');
+        $form->addPassword('password', 'Heslo:')->setRequired("Heslo je povinne")
+            ->addRule(Form::MIN_LENGTH, 'Heslo musí mít alespoň %d znaky', 6)
+            ->addRule(Form::MAX_LENGTH, 'Maximalni delka je %d znaků', 100);
+
+        $form->addSubmit('send', 'Registrovat se');
         $form->onSuccess[] = array($this, 'commentFormSucceeded');
         return $form;
     }
@@ -43,14 +46,13 @@ class RegisterPresenter extends BasePresenter
 
     public function commentFormSucceeded($form, $values)
     {
-        $this->template->name=$values->name;
-        $this->template->pass=$values->password;
+        //Debugger::dump($values);
+        $this->context->register->register($values["name"],$values["email"],$values["password"]);
+        $this->flashMessage('Děkujeme za registraci', 'success');
+        $this->redirect('Main:default');
 
 
-        //$this->redirect('Main:default');
 
-        //$this->flashMessage('Děkuji za komentář', 'success');
-        //$this->redirect('this');
     }
 
 }

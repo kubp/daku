@@ -196,7 +196,9 @@ Nette.isDisabled = function(elem) {
  */
 Nette.addError = function(elem, message) {
 	if (message) {
-		alert(message);
+		$(".form-error").clearQueue().text(message).fadeIn().delay(1000).fadeOut();
+
+
 	}
 	if (elem.focus) {
 		elem.focus();

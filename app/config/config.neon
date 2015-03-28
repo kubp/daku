@@ -22,7 +22,10 @@ nette:
 
 
 services:
-	- App\Model\UserManager
+	#- App\Model\UserManager
 	router: App\RouterFactory::createRouter
 	item : App\Model\ItemList
 	category : App\Model\CategoryList
+	authenticator: App\Model\Authenticator
+	settings: App\Model\Settings
+	register: App\Model\Register

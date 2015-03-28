@@ -15,8 +15,10 @@ class LoginPresenter extends BasePresenter
 
     public function renderDefault($item)
     {
-        $this->template->item = $item;
 
+        if($this->getUser()->id){
+        $this->redirect("Main:default");
+            }
     }
 
     protected function createComponentPrihlaseniForm()
@@ -38,14 +40,16 @@ class LoginPresenter extends BasePresenter
 
     public function commentFormSucceeded($form, $values)
     {
-        $this->template->name=$values->name;
-        $this->template->pass=$values->password;
 
+        try {
+            $this->getUser()->login($values["name"], $values["password"]);
+
+        } catch (Nette\Security\AuthenticationException $e) {
+            $this->flashMessage('Špatný login nebo heslo', 'bad');
+        }
 
         //$this->redirect('Main:default');
 
-        //$this->flashMessage('Děkuji za komentář', 'success');
-        //$this->redirect('this');
     }
 
 }

@@ -12,8 +12,8 @@ class MainModel extends \Nette\Object{
     }
 
 
-    public function findBy($table,$slc, $where) {
-        return $this->database->table($table)->where($slc, $where);
+    public function findBy($table, $where) {
+        return $this->database->table($table)->where($where);
     }
 
     public function findAll($data){
@@ -24,7 +24,13 @@ class MainModel extends \Nette\Object{
         return $this->database->table($table)->get($id);
     }
 
+    public function findOneBy($table, array $by) {
+        return $this->database->table($table)->limit(1)->fetch();
+    }
 
+    public function insert($table,array $data) {
+        return $this->database->table($table)->insert($data);
+    }
 
 
 
