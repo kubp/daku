@@ -1,3 +1,8 @@
+{if preg_match('/api.*/', $_SERVER['HTTP_HOST'])}
+{contentType application/json}
+{json_encode(array("message"=>"Not Found"), 192)}
+{debugbreak}
+{/if}
 {block content}
 <h1 n:block=title>Page Not Found</h1>
 
