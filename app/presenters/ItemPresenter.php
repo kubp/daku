@@ -21,9 +21,18 @@ class ItemPresenter extends BasePresenter
 
     }
 
-    public function renderObjednat($id)
+    public function renderBuy($id)
     {
-        //$this->template->text = 'any value';
+        if (!$this->getUser()->isLoggedIn()) {
+            $this->error('Musíte se přihlásit');
+        }else{
+
+            $this->context->item->buyItem($id, $this->getUser()->getIdentity()->data[0]);
+
+
+            //$this->flashMessage('Děkujeme za nákup', 'success');
+            //$this->redirect('Item:default',$id,"as");
+        }
     }
 
 }
