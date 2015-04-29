@@ -16,6 +16,7 @@ class CategoryPresenter extends BasePresenter
     public function renderDefault($category)
     {
         if($category==""){
+
             $this->redirect('Main:default');
         }
         if (count($this->context->category->getAll($category))==0) {

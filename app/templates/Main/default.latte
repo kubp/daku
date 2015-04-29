@@ -12,7 +12,12 @@
 
 <a n:href="Category:">Kategorie</a>
 <br><br><hr>
+{if $logged==false}
 <a n:href="Login:">Prihlaseni</a>
 <a n:href="Register:">Registrace</a>
+{/if}
+{if $logged==true}
 <a n:href="Settings:logout">Logout</a>
 <a n:href="Settings:">Settings</a>
+<a n:href="Cart:">Cart</a>
+{/if}

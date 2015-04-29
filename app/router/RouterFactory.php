@@ -26,7 +26,9 @@ class RouterFactory
 		});
 
 		$router = new RouteList();
-		$router[] = new Route('//api.%domain%/%basePath%/<action>[/<id>]', 'Api:default');
+		$router[] = new Route('//api.%domain%/%basePath%/v1/<action>[/<id>]', 'Api:default');
+		$router[] = new Route('//api.%domain%/%basePath%/<action>[/<id>]', 'Api:version');
+
 		$router[] = new Route('item[/<item>-<itemname>]', 'Item:default');
 		$router[] = new Route('category[/<category>]', 'Category:default');
 		$router[] = new Route('login', 'Login:default');

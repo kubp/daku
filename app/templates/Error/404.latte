@@ -1,9 +1,9 @@
 {if preg_match('/api.*/', $_SERVER['HTTP_HOST'])}
 {contentType application/json}
 {json_encode(array("message"=>"Not Found"), 192)}
-{debugbreak}
 {/if}
-{block content}
+
+{if !preg_match('/api.*/', $_SERVER['HTTP_HOST'])}
 <h1 n:block=title>Page Not Found</h1>
 
 <p>The page you requested could not be found. It is possible that the address is
@@ -11,3 +11,5 @@ incorrect, or that the page no longer exists. Please use a search engine to find
 what you are looking for.</p>
 
 <p><small>error 404</small></p>
+{/if}
+

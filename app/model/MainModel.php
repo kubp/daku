@@ -32,6 +32,12 @@ class MainModel extends \Nette\Object{
         return $this->database->table($table)->insert($data);
     }
 
+    public function query($data){
+        return $this->database->query($data);
+
+
+    }
+
 
 
 }
