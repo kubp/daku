@@ -17,7 +17,7 @@ class ApiPresenter extends BasePresenter
         $a = array(
             "api_version" => "v1",
             "status" => "ok",
-            "documentation" => "http://edaku.eu/api"
+            "documentation" => "http://edaku.eu/docs/api"
 
 
 
@@ -35,7 +35,7 @@ class ApiPresenter extends BasePresenter
         $a = array(
             "status" => "ok",
             "message" => "Please select API version",
-            "documentation" => "http://edaku.eu/api"
+            "documentation" => "http://edaku.eu/docs/api"
         );
 
         $this->template->json     = $a;
@@ -78,7 +78,7 @@ class ApiPresenter extends BasePresenter
         $a = array(
             "api_version" => "v1",
             "status" => "ok",
-            "documentation" => "http://edaku.eu/api",
+            "documentation" => "http://edaku.eu/docs/api",
             "items" => $res
         );
 
@@ -93,7 +93,7 @@ class ApiPresenter extends BasePresenter
             $a                    = array(
                 "api_version" => "v1",
                 "status" => "ok",
-                "documentation" => "http://edaku.eu/api",
+                "documentation" => "http://edaku.eu/docs/api",
                 "item_detail" => array(
                     "item_name" => $data->item_name,
                     "description" => $data->description,

@@ -13,6 +13,13 @@ class CategoryList extends MainModel{
         return $categorydb;
     }
 
+    public function getAllCategory(){
+
+        $categorydb = $this->query("SELECT category FROM item GROUP by category");
+
+        return $categorydb;
+    }
+
 
 
 }

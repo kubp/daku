@@ -1,9 +1,113 @@
 {block content}
-<h1>Objednat</h1>
-
-Koupit {$items->item_name}<br>
-{$items->description}
-<br>
-<a n:href="Item:buy $items->item_id">Koupit</a>
+<div id="content">
+<header>
+    <div class="logo"><img src="/img/logo.svg" width="150" height="150"></div>
 
 
+    <div class="right-menu">
+        <div class="cart">
+            <a href="index.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
+            <div class="incart">5</div>
+        </div>
+
+        <ul>
+            <li><a href="index.html">Nastevení</a></li>
+            <li><a href="index.html">Odhlásit</a></li>
+            <li><a href="index.html"><i class="fa fa-search" id="s-i"></i></a></li>
+
+        </ul>
+
+
+    </div>
+    <div class="clear"></div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Modely</a></li>
+            <li><a href="index.html">Mobily</a></li>
+
+        </ul>
+
+    </nav>
+    <div class="clear"></div>
+</header>
+
+
+<div class="navigation">
+    <span>Hlavní</span><span class="arrow">&gt;</span>
+    <span>Produkty</span><span class="arrow">&gt;</span>
+    <span class="last-item">Stránka 1 z 1</span>
+</div>
+
+
+<div id="shop-content">
+
+
+    <div class="detail">
+        <div class="detail-img">
+            <img src="/img/nexus.jpg" width="350">
+        </div>
+
+        <div class="detail-small">
+            <img src="/img/nexus.jpg" width="80">
+            <img src="/img/nexus.jpg" width="80">
+            <img src="/img/nexus.jpg" width="80">
+        </div>
+
+        <div class="detail-right">
+            <div id="detail-title">
+                <h1>{$items->item_name}</h1>
+                <span class="price">{$items->price},-</span>
+            </div>
+
+            <div id="item-option">
+                <div class="option">
+                    <span>Barva</span>
+                    <select name="test">
+                        <option value="jb">Modrá</option>
+                        <option value="hs" selected="selected">Hnědá</option>
+                    </select>
+                </div>
+                <div class="option">
+                    <span>Počet ks</span>
+                    <input type="number" name="quantity" min="1" max="5" value="{$items->in_stock}">
+                </div>
+
+            </div>
+
+
+
+
+
+
+                <a n:href="Item:buy $items->item_id"><input type="submit" value="Koupit" class="button m"></a>
+
+
+
+                <span class="description">
+            {$items->description}
+
+            </span>
+
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+    <div class="clear"></div>
+</div>
+
+
+
+
+</div>
+<footer>
+   <div>
+    <a href="http://github.com/edaku"><img src="/img/github.png" width="35"></a>
+    <span>&copy; Daku</span>
+    </div>
+</footer>

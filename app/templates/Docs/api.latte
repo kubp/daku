@@ -1,0 +1,251 @@
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+ <script type="text/javascript" src="javascript/jquery.js"></script>
+
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<script type="text/javascript" src="/docs_file/scripts/shCore.js"></script>
+<script type="text/javascript" src="/docs_file/scripts/shBrushPhp.js"></script>
+<script type="text/javascript" src="/docs_file/scripts/shBrushXml.js"></script>
+<script type="text/javascript" src="/docs_file/scripts/shBrushPython.js"></script>
+<script type="text/javascript" src="/docs_file/scripts/shBrushJScript.js"></script>
+
+<link type="text/css" rel="stylesheet" href="/docs_file/styles/main.css"/>
+<link type="text/css" rel="stylesheet" href="/docs_file/styles/shCoreRDark.css"/>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+<style>
+.toolbar{
+display:none}
+  .syntaxhighlighter {
+     overflow-y: hidden !important;
+     overflow-x: auto !important;
+  padding:5px;
+ font-size: 14px !important;
+  }
+
+.syntaxhighlighter .line.alt2 {
+    background-color: rgb(22,20,29) !important;
+}
+.syntaxhighlighter .line.alt1 {
+    background-color: rgb(22,20,29) !important;
+}
+.syntaxhighlighter {
+    background-color: rgb(22,20,29) !important;
+border-radius: 5px;
+}
+
+.syntaxhighlighter div{
+line-height: 1.4em !important;
+
+}
+
+
+.syntaxhighlighter .keyword {
+    color: rgb(130,130,255) !important;
+}
+
+.syntaxhighlighter .variable {
+    color: rgb(237,147,92) !important;
+}
+
+
+.syntaxhighlighter .string, .syntaxhighlighter .string a {
+    color: rgb(196,255,97) !important;
+}
+
+.syntaxhighlighter .gutter {
+    color: rgb(98,97,134) !important;
+}
+
+.syntaxhighlighter .gutter .line {
+    border-right: 4px solid rgba(0,0,0,0) !important;
+
+}
+.syntaxhighlighter table td.gutter .line {
+
+    background: none repeat scroll 0% 0% rgb(33,30,53) !important;
+}
+
+</style>
+
+
+<title></title>
+  </head>
+  <body>
+
+<div id="content">
+<h1>Daku API</h1>
+ <nav>
+<ul>
+ <li><a href="#v1"><span class="n">/v1/</a></li>
+  <li><a href="#items"><span class="n">/v1/</span><span class="r"> /items/</span><span class="a">:page</span> </a></li>
+  <li><a href="#item"><span class="n">/v1/</span><span class="r"> /item/<span class="a">:id</span> </a></li>
+  <li><a href="#category"><span class="n">/v1/</span><span class="r">/category/</span><span class="a">:name</span> </a></li>
+  <li><a href="#user"><span class="n">/v1/</span><span class="r">/user/</span><span class="a">:key</span> </a></li>
+<li><a href="#user-buy"><span class="n">/v1/</span><span class="r">/user/</span><span class="a">:key</span><span class="r">/buy/</spam><span class="a">:id</span> </a></li>
+
+</ul>
+
+ </nav>
+
+
+
+<div class="url" id="v1">
+/v1/
+</div>
+
+<div class="editor">
+<pre class="brush: js">
+//Main API page
+
+{
+    "api_version": "v1",
+    "app": "daku",
+    "documentation": "http://edaku.eu/api",
+    "status": "ok"
+}
+
+</pre>
+</div>
+
+
+
+
+<div class="url" id="items">
+/v1/ /items/:page
+</div>
+<div class="editor">
+<pre class="brush: js">
+//Main API page
+
+{
+    "current_url": "http://api.edaku.eu/items",
+    "status": "ok",
+    "items": [
+        {
+            "id": 1,
+            "name": "Levn\u00e9 PC",
+            "description": "asd das dasd as dsad s",
+            "price": 150,
+            "category": "Deve"
+        },
+        {
+            "id": 2,
+            "name": "Test",
+            "description": "saadsads a dsd asda d",
+            "price": 120,
+            "category": "Deve"
+        },
+        {
+            "id": 3,
+            "name": "Deb",
+            "description": " sad adasd as das d",
+            "price": 40,
+            "category": "Teste"
+        }
+
+
+    ]
+}
+
+</pre>
+</div>
+
+
+<div class="url" id="item">
+/v1/ /item/:id
+</div>
+<div class="editor">
+<pre class="brush: js">
+//Main API page
+
+{
+    "current_url": "api.edaku.eu/item/",
+    "item_detail": {
+        "item_name": "Levn\u00e9 PC",
+        "description": "asd das dasd as dsad sad",
+        "price": 150,
+        "in_stock": 4,
+        "category": "Deve"
+    }
+}
+
+</pre>
+</div>
+
+
+
+<div class="url" id="category">
+/v1//category/:name
+</div>
+<div class="editor">
+<pre class="brush: js">
+//Main API page
+
+{
+    "current_url": "http://api.edaku.eu/items",
+    "status": "ok",
+    "items": [
+        {
+            "id": 1,
+            "name": "Levn\u00e9 PC",
+            "description": "asd das dasd as dsad s",
+            "price": 150
+        },
+        {
+            "id": 2,
+            "name": "Test",
+            "description": "saadsads a dsd asda d",
+            "price": 120
+        }
+    ]
+}
+
+</pre>
+</div>
+
+
+
+
+<div class="url" id="user">
+/v1//user/:key
+</div>
+<div class="editor">
+<pre class="brush: js">
+//Not yet
+
+
+
+</pre>
+</div>
+
+
+
+
+<div class="url" id="user-buy">
+/v1//user/:key/buy/:id
+</div>
+<div class="editor">
+<pre class="brush: js">
+//Not yet
+
+
+</pre>
+</div>
+
+
+
+</div>
+
+<footer>
+   <div>
+    <a href="http://github.com/edaku"><img src="/docs_file/img/github.png" width="35"></a>
+    <span>&copy; Daku</span>
+    </div>
+</footer>
+
+
+  </body>
+</html>

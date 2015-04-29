@@ -21,6 +21,9 @@ class MainPresenter extends BasePresenter
     }
     public function renderDefault()
     {
+
+        $category = $this->context->category->getAllCategory();
+        $this->template->category=$category;
         $this->template->logged = false;
         $data=$this->ItemListModel->getAllItems();
         $this->template->items = $data;
