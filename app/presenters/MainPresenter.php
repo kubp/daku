@@ -21,14 +21,16 @@ class MainPresenter extends BasePresenter
     }
     public function renderDefault()
     {
-
+        $this->template->title="DAS";
         $category = $this->context->category->getAllCategory();
         $this->template->category=$category;
-        $this->template->logged = false;
+
         $data=$this->ItemListModel->getAllItems();
         $this->template->items = $data;
         if($this->getUser()->isLoggedIn()){
             $this->template->logged = true;
+        }else{
+            $this->template->logged = false;
         }
 
     }

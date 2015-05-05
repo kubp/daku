@@ -13,7 +13,7 @@ class LoginPresenter extends BasePresenter
 {
 
 
-    public function renderDefault($item)
+    public function renderDefault()
     {
 
         if($this->getUser()->id){
@@ -46,6 +46,9 @@ class LoginPresenter extends BasePresenter
 
         } catch (Nette\Security\AuthenticationException $e) {
             $this->flashMessage('Špatný login nebo heslo', 'bad');
+        }
+        if($this->getUser()->id){
+            $this->flashMessage('Byl jste úspěšně přihlášen', 'success');
         }
 
         //$this->redirect('Main:default');

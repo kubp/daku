@@ -27,7 +27,9 @@ class SettingsPresenter extends BasePresenter
     public function renderLogout()
     {
         $this->user->logout(true);
+        $this->flashMessage('Byl jste úspěšne odhlášen', 'success');
         $this->redirect("Main:default");
+
     }
 
 

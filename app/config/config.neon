@@ -30,3 +30,4 @@ services:
 	settings: App\Model\Settings
 	register: App\Model\Register
 	cart: App\Model\Cart
+	search: App\Model\Search

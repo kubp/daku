@@ -1,65 +1,4 @@
 {block content}
-<div id="content">
-<header>
-    <div class="logo"><img src="img/logo.svg" width="150" height="150"></div>
-
-
-    <div class="right-menu">
-
-        <div class="mini-cart">
-            <div id="arrow-shadow">
-            </div>
-            <div id="arrow"></div>
-            <img src="img/nexus.jpg" width="75px">
-            <div id="mini-cart-item">
-                <span>Drahé</span>
-                <p>150kč</p>
-            </div>
-            <div class="mini-cart-buttons">
-                <input type="submit" class="button white" value="Zrušit">
-                <input type="submit" class="button" value="Košík">
-            </div>
-
-        </div>
-
-
-        <div class="cart">
-            <a href="index.html"><i class="fa fa-shopping-cart fa-2x"></i></a>
-            <div class="incart">5</div>
-        </div>
-
-        <ul>
-            {if $logged==false}
-            <li><a n:href="Login:">Prihlaseni</a></li>
-            <li><a n:href="Register:">Registrace</a></li>
-            {/if}
-            {if $logged==true}
-            <li><a n:href="Settings:logout">Logout</a></li>
-            <li><a n:href="Settings:">Settings</a></li>
-            <li><a n:href="Cart:">Cart</a></li>
-            {/if}
-
-
-            <li><a href="index.html"><i class="fa fa-search" id="s-i"></i></a></li>
-
-        </ul>
-
-
-    </div>
-    <div class="clear"></div>
-    <nav>
-        <ul>
-
-            {foreach $category as $item}
-            <li><a n:href="Category: $item->category">{$item->category}</a></li>
-            {/foreach}
-
-
-        </ul>
-
-    </nav>
-    <div class="clear"></div>
-</header>
 
   <div class="discount">
   <div class="shadow"></div>
@@ -75,7 +14,7 @@
 
 
 <div id="shop-content">
-<div class="shop-head"><h1>Chytré telefony</h1>
+<div class="shop-head">{block title}<h1>Chytré telefony</h1>{/block}
 
     <div class="item-option">
         Setřídit podle:
@@ -125,9 +64,3 @@
 
 
 </div>
-<footer>
-   <div>
-    <a href="http://github.com/edaku"><img src="img/github.png" width="35"></a>
-    <span>&copy; Daku</span>
-    </div>
-</footer>

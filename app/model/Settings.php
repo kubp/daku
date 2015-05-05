@@ -13,6 +13,13 @@ class Settings extends MainModel{
         return $userinfo;
     }
 
+    public function getAllApi($userID){
+
+        $userinfo = $this->findOneId("customer",array("login_key"=>$userID));
+
+        return $userinfo;
+    }
+
 
 
 

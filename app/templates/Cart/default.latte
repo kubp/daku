@@ -1,4 +1,40 @@
-<h1>Košík</h1>
-{foreach $cart as $item}
-{$item->item_name} ya {$item->price}<br>
-{/foreach}
+{block content}
+
+
+
+<div id="shop-content">
+   {block title}<h1>Košík</h1>{/block}
+    <table class="cart-table">
+    {foreach $cart as $item}
+
+   <tr><td  class="item-table"><img src="/img/nexus.jpg" width="100"></td>
+               <td>
+                   <a n:href="Item:default $item->item_id,$item->item_name"> {$item->item_name} </a></td>
+               <td> <input type="number" name="quantity" min="1" max="5" value="{$item->pocet}"></td>
+               <td> {$item->price}kč</td>
+           <td class="remove"><a n:href="Item:remove $item->item_id">Odstranit</a></td>
+           </tr>
+
+    {/foreach}
+
+
+
+
+
+    </table>
+<div id="pay">
+    <input type="submit"  class="button white" value="Aktualizovat">
+    <input type="submit" class="button" value="Zaplatit">
+
+
+</div>
+    <div class="clear"></div>
+
+
+
+</div>
+
+
+
+
+</div>

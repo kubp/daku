@@ -25,6 +25,10 @@ class ItemList extends MainModel{
 
 	}
 
+	public function removeItem($id,$cart){
+		$this->query("DELETE FROM list WHERE cart_id=$cart AND item_id=$id");
+	}
+
 
 
 }

@@ -29,6 +29,7 @@
   font-family: @font;
   margin-left: 4.5px;
   transition: background-color 0.3s ease 0s, box-shadow 0.2s ease 0s;
+  outline: none;
 a{
   text-decoration: none !important;
 }
@@ -50,6 +51,22 @@ a{
 
   }
 }
+
+/* Flash */
+
+.flash{
+  background-color: #7ECA39;
+  width: 100%;
+  padding: 10px;
+  margin-left: -12px;
+  margin-top: -8px;
+  margin-bottom: 14px;
+  color: white;
+  font-family: Arial;
+  display: none;
+}
+
+
 
 
 .clear{
@@ -206,6 +223,19 @@ nav{
 .dolu{
   margin-top: 380px !important;
 }
+
+
+#menu-icon{
+
+  color: rgb(50,50,50);
+  position: absolute;
+  top:5px;
+  cursor: pointer;
+  display: none;
+}
+
+
+
 
 /* KONEC HEADRU */
 #shop-content{
@@ -425,6 +455,32 @@ input[type="number"]:focus{
 }
 
 
+.remove {
+  width: 63px;
+  a {
+    font-size: 14px;
+
+    font-weight: 100;
+    &:link {
+      color: @color-hover;
+    }
+    &:visited {
+      color: @color-hover;
+    }
+    &:hover {
+      color: @color-hover;
+    }
+  }
+  }
+
+
+
+
+
+
+
+
+
 .item-table{
   width: 195px;
   height: 140px;
@@ -569,13 +625,15 @@ input[type="password"]:focus{
 
 
 @media screen and (min-width: 0px) and (max-width: 580px) {
+
+  #menu-icon{
+    display: block;
+  }
+
   .discount{
     display: none;
   }
 
-  .dolu{
-    margin-top: 50px !important;
-  }
 
   .logo{
     display: none;
@@ -613,10 +671,19 @@ input[type="password"]:focus{
     }
   }
 
-  header li{
-    margin-top: 10px;
-    padding: 5px;
-    border-bottom: @border solid @border-color;
+  header {
+    border-bottom: 0px solid #DDD;
+    height: 287px;
+    margin-top: 99px;
+    display: none;
+    li {
+      margin-top: 10px;
+      padding: 5px;
+      border-bottom: @border solid @border-color;
+    }
+  }
+  #content{
+    margin-top: -85px;
   }
   .item-option{
     float: left;
@@ -627,3 +694,25 @@ input[type="password"]:focus{
   }
 }
 
+
+/* Search */
+.autocomplete{
+  background: #ffffff;
+  padding: 10px;
+  border:@border solid @border-color;
+  width: 250px;
+  margin-left: 2px;
+  margin-top: -4px;
+  display: none;
+  span{
+    display: block;
+    cursor: pointer;
+    margin-top: 5px;
+    a{font-weight: 600;}
+    .href
+
+  }
+}
+.s{
+  height: 250px;
+}

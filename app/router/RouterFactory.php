@@ -26,8 +26,14 @@ class RouterFactory
 		});
 
 		$router = new RouteList();
+		Route::$defaultFlags = Route::SECURED;
+
 		$router[] = new Route('//api.%domain%/%basePath%/v1/<action>[/<id>]', 'Api:default');
-		$router[] = new Route('//api.%domain%/%basePath%/<action>[/<id>]', 'Api:version');
+
+		//$router[] = new Route('//api.%domain%/%basePath%/v1/user[/<user>]/<action>[/<id>]', 'Api:user');
+			$router[] = new Route('//api.%domain%/%basePath%/<action>[/<id>]', 'Api:version');
+
+
 
 		$router[] = new Route('item[/<item>-<itemname>]', 'Item:default');
 		$router[] = new Route('category[/<category>]', 'Category:default');
@@ -35,7 +41,7 @@ class RouterFactory
 		$router[] = new Route('register', 'Register:default');
 		$router[] = new Route('<presenter>/<action>[/<id>]', 'Main:default');
 		$router[] = new Route('admin/<action>', 'Admin:default');
-
+		$router[] = new Route('//api.%domain%/%basePath%/v1/<presenter>[/<user>]/<action>[/<id>]', 'User:default');
 		//$router[] = new Route('api/<presenter>/<action>[/<id>]', 'Api:default');
 
 

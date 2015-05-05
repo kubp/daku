@@ -8,12 +8,12 @@
 <head>
 	<meta charset="utf-8">
 
-	<title>{ifset #title}{include title|striptags} | {/ifset}Nette Sandbox</title>
+	<title>{ifset #title}{include title|striptags} | {/ifset}Edaku eshop</title>
 
-	<link rel="icon" href="{$basePath}/favicon.ico" />
+	<link rel="icon" href="{$basePath}favicon.ico" />
    <link rel="stylesheet/less" type="text/css" href="{$basePath}/css/style.less">
     <script src="{$basePath}/js/less.js" type="text/javascript"></script>
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <meta name="viewport" content="width=device-width">
 	<meta name="description" content="Description" />
 
@@ -24,9 +24,89 @@
 	<script> document.documentElement.className+=' js' </script>
 
 	<div n:foreach="$flashes as $flash" class="flash {$flash->type}">{$flash->message}</div>
+	{block menu}
+		<div id="content">
+        <div id="menu-icon"><i class="fa fa-bars fa-2x"></i></div>
+
+
+		<header>
+           <a href="/"><div class="logo"><img src="/img/logo.svg" width="150" height="150"></a></div>
+
+
+            <div class="right-menu">
+
+                <div class="mini-cart">
+                    <div id="arrow-shadow">
+                    </div>
+                    <div id="arrow"></div>
+                    <img src="img/nexus.jpg" width="75px">
+                    <div id="mini-cart-item">
+                        <span>Drahé</span>
+                        <p>150kč</p>
+                    </div>
+                    <div class="mini-cart-buttons">
+                        <input type="submit" class="button white" value="Zrušit">
+                        <input type="submit" class="button" value="Košík">
+                    </div>
+
+                </div>
+
+
+                <div class="cart">
+                    <a n:href="Cart:"><i class="fa fa-shopping-cart fa-2x"></i></a>
+                    <div class="incart">5</div>
+                </div>
+
+                <ul>
+                   {ifset $logged}
+                    {if $logged==false}
+                    <li><a n:href="Login:">Prihlaseni</a></li>
+                    <li><a n:href="Register:">Registrace</a></li>
+                    {/if}
+                    {if $logged==true}
+                    <li><a n:href="Settings:logout">Logout</a></li>
+                    <li><a n:href="Settings:">Settings</a></li>
+                    <li><a n:href="Cart:">Cart</a></li>
+                    {/if}
+					{else}
+					 <li><a n:href="Login:">Prihlaseni</a></li>
+                       <li><a n:href="Register:">Registrace</a></li>
+					{/ifset}
+
+                    <li><a n:href="Search:"><i class="fa fa-search" id="s-i"></i></a></li>
+
+                </ul>
+
+
+            </div>
+            <div class="clear"></div>
+            <nav>
+                <ul>
+				{ifset $category}
+                    {foreach $category as $item}
+                    <li><a n:href="Category: $item->category">{$item->category}</a></li>
+                    {/foreach}
+				{else}
+					   <li><a href="/">Hlavní strana</a></li>
+					  <li><a href="/category">Kategorie</a></li>
+				{/ifset}
+                </ul>
+
+            </nav>
+            <div class="clear"></div>
+        </header>
+	{/block}
 
 	{include content}
 
+    {block footer}
+    <footer>
+       <div>
+        <a href="http://github.com/edaku"><img src="/img/github.png" width="35"></a>
+        <span>&copy; Daku</span>
+        </div>
+    </footer>
+    {/block}
 	{block scripts}
 	<script src="{$basePath}/js/jquery.js"></script>
 	<script src="{$basePath}/js/netteForms.js"></script>

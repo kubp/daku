@@ -165,5 +165,31 @@ class ApiPresenter extends BasePresenter
 
 
 
+    public function RenderUser($id){
+
+
+        $info=$this->context->settings->getAllApi($id);
+        if(isset($info->mail)){
+            $this->template->json = array(
+                "api_version" => "v1",
+                "status" => "ok",
+                "documentation" => "http://edaku.eu/api",
+                "user_info"=>array("user"=>$info->name,
+                    "mail"=>$info->mail,
+                    "adress"=>$info->adress,
+                    "phone"=>$info->phone,
+                    "cart_id"=>$info->mail)
+
+            );
+        }else{
+            $this->template->json = array(
+                "message" => "Not Found"
+            );
+        }
+
+
+    }
+
+
 
 }

@@ -1,0 +1,62 @@
+{block content}
+
+
+<div class="navigation">
+    <span>Hlavní</span><span class="arrow">&gt;</span>
+    <span>Produkty</span><span class="arrow">&gt;</span>
+    <span class="last-item">Stránka 1 z 1</span>
+</div>
+
+
+<div id="shop-content">
+<div class="shop-head s"> {block title}<h1>Hledání</h1>{/block}
+<div id="search">
+<form action="">
+<table>
+<tr><td><input id="s" type="text" name="s" autocomplete="off" value="{ifset $search}
+{$search}{/ifset}
+"></td><td><input type="submit" class="button" value="Najít" ></td></tr>
+</table>
+
+<div class="autocomplete">
+
+
+
+
+</div>
+
+
+</form>
+
+  </div>
+
+
+</div>
+
+    <div id="items">
+
+   <div class="item" n:foreach="$items as $key => $item">
+   <a n:href="Item:default $item->item_id,$item->item_name">
+   <img src="/img/nexus.jpg" width="230" height="230">
+   </a>
+   <a n:href="Item:default $item->item_id,$item->item_name">{$item->item_name}</a>
+   <span class="title">{$item->category}</span>
+   <span class="price">{$item->price},-</span>
+    </div>
+
+
+    </div>
+
+
+    <div class="clear"></div>
+</div>
+    <div class="page">
+        <ul><li><a href="asd">1</a></li>
+            <li><a href="asd">1</a></li>
+        </ul>
+
+    </div>
+
+
+
+</div>
