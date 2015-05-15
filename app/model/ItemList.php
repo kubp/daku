@@ -11,6 +11,11 @@ class ItemList extends MainModel{
 		return  $items;
 	}
 
+	public function getAllItemsBy($order){
+		$items=$this->findAll("item")->order($order);
+		return  $items;
+	}
+
 	public function getDetail($id){
 		return $this->findOneId("item",$id);
 

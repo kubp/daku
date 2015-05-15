@@ -14,35 +14,31 @@
 
 
 <div id="shop-content">
-<div class="shop-head">{block title}<h1>Chytré telefony</h1>{/block}
+<div class="shop-head">{block title}<h1>Modely</h1>{/block}
 
     <div class="item-option">
         Setřídit podle:
         <select name="ovoce">
-            <option value="jb">Ceny</option>
-            <option value="hs" selected="selected">A - Z</option>
+            <option value="price-desc">Ceny: Nejlevnější</option>
+               <option value="price-asc">Ceny: Nejdražší</option>
+            <option value="title" selected="selected">A - Z</option>
         </select>
 
-        od
-            <select name="ovoce">
-                <option value="jb">Nejlevnější</option>
-                <option value="hs" selected="selected">Nejlevnější</option>
-            </select>
     </div>
   </div>
     <div class="clear"></div>
 
     <div id="items">
 
-<div class="item" n:foreach="$items as $key => $item">
-<a n:href="Item:default $item->item_id,$item->item_name">
-<img src="img/nexus.jpg" width="230" height="230">
-</a>
-<a n:href="Item:default $item->item_id,$item->item_name">{$item->item_name}</a>
-<span class="title">{$item->category}</span>
-<span class="price">{$item->price},-</span>
+    <div class="item" n:foreach="$items as $key => $item">
+        <a n:href="Item:default $item->item_id,$item->item_name">
+            <img src="images/items/{$item->item_id}.png" width="230" height="230">
+        </a>
+        <a n:href="Item:default $item->item_id,$item->item_name">{$item->item_name}</a>
+        <span class="title">{$item->category}</span>
+        <span class="price">{$item->price},-</span>
 
-</div>
+    </div>
 
 
 

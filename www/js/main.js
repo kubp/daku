@@ -80,4 +80,30 @@ $(".flash").slideToggle(200).delay(1000).slideToggle(200);
 
 
 
+
+
+    //Razeni
+
+    $(".item-option select").change(function(){
+
+        var sort = ($(this).val());
+        window.location.href="/?sort_by="+sort+"";
+    });
+
+    if(getQueryVariable("sort_by")) {
+        $(".item-option select").val(getQueryVariable("sort_by"));
+    }
 });
+
+
+
+function getQueryVariable(variable)
+{
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+    }
+    return(false);
+}
