@@ -45,7 +45,7 @@ class LoginPresenter extends BasePresenter
             $this->getUser()->login($values["name"], $values["password"]);
 
         } catch (Nette\Security\AuthenticationException $e) {
-            $this->flashMessage('Špatný login nebo heslo', 'bad');
+            $this->flashMessage('Špatný login nebo heslo', 'error');
         }
         if($this->getUser()->id){
             $this->flashMessage('Byl jste úspěšně přihlášen', 'success');

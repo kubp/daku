@@ -38,6 +38,7 @@ class MainPresenter extends BasePresenter
 
 
         $category = $this->context->category->getAllCategory();
+
         $this->template->category=$category;
 
 

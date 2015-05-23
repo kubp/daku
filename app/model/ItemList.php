@@ -7,12 +7,12 @@ class ItemList extends MainModel{
 
 	public $items;
 	public function getAllItems(){
-		$items=$this->findAll("item");
+		$items=$this->query("SELECT * FROM item JOIN category ON category_id=category.idcategory");
 		return  $items;
 	}
 
 	public function getAllItemsBy($order){
-		$items=$this->findAll("item")->order($order);
+		$items=$this->query("SELECT * FROM item JOIN category ON category_id=category.idcategory ORDER by $order");
 		return  $items;
 	}
 

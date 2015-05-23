@@ -3,7 +3,8 @@
 namespace App\Presenters;
 
 use Nette,
-    App\Model;
+    App\Model,
+    Nette\Utils\Strings;
 
 
 /**
@@ -25,18 +26,18 @@ class ItemPresenter extends BasePresenter
 
     }
 
-    public function renderBuy($id)
+    public function renderBuy($id,$itemname)
     {
         if (!$this->getUser()->isLoggedIn()) {
             $this->flashMessage('Musíte se přihlásit', 'success');
-            $this->redirect('Item:default',$id,"as");
+            $this->redirect('Item:default',$id,Strings::webalize($itemname));
         }else{
 
             $this->context->item->buyItem($id, $this->getUser()->getIdentity()->data[0]);
 
 
             $this->flashMessage('Děkujeme za nákup', 'success');
-            $this->redirect('Item:default',$id,"as");
+            $this->redirect('Item:default',$id,Strings::webalize($itemname));
         }
     }
 

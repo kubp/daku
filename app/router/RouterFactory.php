@@ -25,22 +25,24 @@ class RouterFactory
 			return Strings::webalize($url);
 		});
 
+		Route::addStyle('category');
+		Route::setStyleProperty('category', Route::FILTER_OUT, function($url) {
+			return Strings::webalize($url);
+		});
+
 		$router = new RouteList();
-		Route::$defaultFlags = Route::SECURED;
+
 
 		$router[] = new Route('//api.%domain%/%basePath%/v1/<action>[/<id>]', 'Api:default');
-
 		//$router[] = new Route('//api.%domain%/%basePath%/v1/user[/<user>]/<action>[/<id>]', 'Api:user');
-			$router[] = new Route('//api.%domain%/%basePath%/<action>[/<id>]', 'Api:version');
+		$router[] = new Route('//api.%domain%/%basePath%/<action>[/<id>]', 'Api:version');
 
-
-
-		$router[] = new Route('item[/<item>-<itemname>]', 'Item:default');
-		$router[] = new Route('category[/<category>]', 'Category:default');
-		$router[] = new Route('login', 'Login:default');
-		$router[] = new Route('register', 'Register:default');
-		$router[] = new Route('<presenter>/<action>[/<id>]', 'Main:default');
-		$router[] = new Route('admin/<action>', 'Admin:default');
+		$router[] = new Route('item[/<item>-<itemname>]', 'Item:default',Route::SECURED);
+		$router[] = new Route('category[/<id>-<category>]', 'Category:default', Route::SECURED);
+		$router[] = new Route('login', 'Login:default', Route::SECURED. Route::SECURED);
+		$router[] = new Route('register', 'Register:default', Route::SECURED);
+		$router[] = new Route('<presenter>/<action>[/<id>]', 'Main:default', Route::SECURED);
+		$router[] = new Route('admin/<action>', 'Admin:default', Route::SECURED);
 		$router[] = new Route('//api.%domain%/%basePath%/v1/<presenter>[/<user>]/<action>[/<id>]', 'User:default');
 		//$router[] = new Route('api/<presenter>/<action>[/<id>]', 'Api:default');
 

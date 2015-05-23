@@ -84,7 +84,7 @@
                 <ul>
 				{ifset $category}
                     {foreach $category as $item}
-                    <li><a n:href="Category: $item->category">{$item->category}</a></li>
+                    <li><a n:href="Category:default $item->idcategory,$item->category_name">{$item->category_name}</a></li>
                     {/foreach}
 				{else}
 					   <li><a href="/">Hlavní strana</a></li>
@@ -112,5 +112,7 @@
 	<script src="{$basePath}/js/netteForms.js"></script>
 	<script src="{$basePath}/js/main.js"></script>
 	{/block}
+
+
 </body>
 </html>

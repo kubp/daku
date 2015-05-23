@@ -39,7 +39,12 @@
                 </div>
                 <div class="option">
                     <span>Počet ks</span>
-                    <input type="number" name="quantity" min="1" max="5" value="{$items->in_stock}">
+             {if $items->in_stock>0}
+             <input type="number" name="quantity" min="1" max="5" value="{if $items->in_stock>5}5{else}{$items->in_stock}{/if}">
+               {else}
+                <input type="number" name="quantity" min="0" max="0" value="0">
+                {/if}
+
                 </div>
 
             </div>
@@ -48,10 +53,14 @@
 
 
 
-
-                <a n:href="Item:buy $items->item_id"><input type="submit" value="Koupit" class="button m"></a>
-
-
+                 {if $items->in_stock>0}
+                <a n:href="Item:buy $items->item_id,$items->item_name"><input type="submit" value="Koupit" class="button m"></a>
+                {else}
+                <div class="soldout">Vyprodáno</div>
+                {/if}
+                  {if $items->in_stock==1}
+                  <div class="soldout">Poslední kus</div>
+                  {/if}
 
                 <span class="description">
             {$items->description}

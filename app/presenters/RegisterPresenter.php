@@ -3,9 +3,9 @@
 namespace App\Presenters;
 
 use Nette,
-    Nette\Application\UI\Form;
+    Nette\Application\UI\Form,
+    Tracy\Debugger;
 
-use Tracy\Debugger;
 /**
  * Homepage presenter.
  */
@@ -46,7 +46,14 @@ class RegisterPresenter extends BasePresenter
 
     public function commentFormSucceeded($form, $values)
     {
-        //Debugger::dump($values);
+        $check = $this->context->register->checkRegister($values["email"]);
+        //Debugger::dump($check);
+        //echo $check;
+        if($check){
+            $this->flashMessage('Chyba při registraci', 'error');
+            $this->redirect('Register:default');
+        }
+
         $this->context->register->register($values["name"],$values["email"],$values["password"]);
         $this->flashMessage('Děkujeme za registraci', 'success');
         $this->redirect('Main:default');

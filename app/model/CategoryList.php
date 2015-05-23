@@ -8,14 +8,14 @@ class CategoryList extends MainModel{
     public $category;
     public function getAll($category){
 
-        $categorydb = $this->findBy("item",array("category"=>$category));
+        $categorydb = $this->findBy("item",array("category.idcategory"=>$category));
 
         return $categorydb;
     }
 
     public function getAllCategory(){
 
-        $categorydb = $this->query("SELECT category FROM item GROUP by category");
+        $categorydb = $this->findAll("category")->group("category_name");
 
         return $categorydb;
     }

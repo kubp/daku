@@ -3,7 +3,7 @@ parameters:
 
 
 database:
-        dsn: 'mysql:host=127.0.0.1;dbname=test2'
+        dsn: 'mysql:host=127.0.0.1;dbname=test3'
         user: eshop
         password: eshop
         options:
