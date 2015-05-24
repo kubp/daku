@@ -30,37 +30,24 @@ class ApiPresenter extends BasePresenter
         );
     }
 
-    public function renderVersion()
-    {
-        $a = array(
-            "status" => "ok",
-            "message" => "Please select API version",
-            "documentation" => "http://edaku.eu/docs/api"
-        );
 
-        $this->template->json     = $a;
-        $this->template->settings = array(
-            JSON_PRETTY_PRINT,
-            JSON_UNESCAPED_SLASHES
-        );
-    }
 
     public function renderItems()
     {
 
-        $data        = $this->context->item->getAllItems();
+        $data        = $this->context->item->getAllItems()->fetchAll();
         $item_id     = array();
         $itemnames   = array();
         $description = array();
         $price       = array();
         $category    = array();
 
-        for ($i = 1; $i < count($data) + 1; $i++) {
+        for ($i = 0; $i < count($data); $i++) {
             $itemnames[]   = $data[$i]->item_name;
             $description[] = $data[$i]->description;
             $price[]       = $data[$i]->price;
             $item_id[]     = $data[$i]->item_id;
-            $category[]    = $data[$i]->category;
+            $category[]    = $data[$i]->category_name;
         }
 
         $res = array();
@@ -98,8 +85,8 @@ class ApiPresenter extends BasePresenter
                     "item_name" => $data->item_name,
                     "description" => $data->description,
                     "price" => $data->price,
-                    "in_stock" => $data->in_stock,
-                    "category" => $data->category
+                    "in_stock" => $data->in_stock
+
                 )
             );
             $this->template->json = $a;
@@ -165,27 +152,28 @@ class ApiPresenter extends BasePresenter
 
 
 
-    public function RenderUser($id){
+    public function RenderLogin($mail,$password){
+        try {
+            $this->getUser()->login($mail,$password);
 
+        } catch (Nette\Security\AuthenticationException $e) {
 
-        $info=$this->context->settings->getAllApi($id);
-        if(isset($info->mail)){
-            $this->template->json = array(
-                "api_version" => "v1",
-                "status" => "ok",
-                "documentation" => "http://edaku.eu/api",
-                "user_info"=>array("user"=>$info->name,
-                    "mail"=>$info->mail,
-                    "adress"=>$info->adress,
-                    "phone"=>$info->phone,
-                    "cart_id"=>$info->mail)
-
-            );
-        }else{
-            $this->template->json = array(
-                "message" => "Not Found"
-            );
         }
+        if($this->getUser()->id){
+            $logged="Logged In";
+
+        $this->context->api->createApiKey($this->getUser()->id);
+
+        }else{
+            $logged="Authentication Failed";
+        }
+
+        $this->template->mail=$mail;
+
+        $this->template->json = array(
+            "message" => $logged
+        );
+
 
 
     }

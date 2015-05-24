@@ -9,10 +9,10 @@ class Register extends MainModel{
             "password"=>Nette\Security\Passwords::hash($password)));
 
 
-    $cart=$this->findOneBy("customer",array("mail"=>$mail));
+    $cart=$this->findBy("customer",array("mail"=>$mail))->limit(1)->fetch();
 
         $this->insert("cart",array("customer_id"=>$cart, "paid"=>"false",
-            "date"=>time()));
+          "date"=>time()));
     }
 
     public function checkRegister($mail){

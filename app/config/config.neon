@@ -31,3 +31,4 @@ services:
 	register: App\Model\Register
 	cart: App\Model\Cart
 	search: App\Model\Search
+	api: App\Model\Api
