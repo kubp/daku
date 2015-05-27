@@ -41,7 +41,7 @@ class RouterFactory
 		$router[] = new Route('category[/<id>-<category>]', 'Category:default', Route::SECURED);
 		$router[] = new Route('login', 'Login:default', Route::SECURED. Route::SECURED);
 		$router[] = new Route('register', 'Register:default', Route::SECURED);
-		$router[] = new Route('<presenter>/<action>[/<id>]', 'Main:default', Route::SECURED);
+		$router[] = new Route('<presenter>/<action>[/<id>]', 'Main:default');
 		$router[] = new Route('admin/<action>', 'Admin:default', Route::SECURED);
 
 		//$router[] = new Route('api/<presenter>/<action>[/<id>]', 'Api:default');

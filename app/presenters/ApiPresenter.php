@@ -41,6 +41,7 @@ class ApiPresenter extends BasePresenter
         $description = array();
         $price       = array();
         $category    = array();
+        $category_id    = array();
 
         for ($i = 0; $i < count($data); $i++) {
             $itemnames[]   = $data[$i]->item_name;
@@ -48,6 +49,7 @@ class ApiPresenter extends BasePresenter
             $price[]       = $data[$i]->price;
             $item_id[]     = $data[$i]->item_id;
             $category[]    = $data[$i]->category_name;
+            $category_id[]    = $data[$i]->idcategory;
         }
 
         $res = array();
@@ -57,7 +59,8 @@ class ApiPresenter extends BasePresenter
                 "name" => $itemnames[$i],
                 "description" => $description[$i],
                 "price" => $price[$i],
-                "category" => $category[$i]
+                "category" => $category[$i],
+                "category_id" => $category_id[$i]
             );
         }
 
@@ -152,7 +155,7 @@ class ApiPresenter extends BasePresenter
 
 
 
-    public function RenderLogin($mail,$password){
+    public function renderLogin($mail,$password){
         try {
             $this->getUser()->login($mail,$password);
 
@@ -162,17 +165,46 @@ class ApiPresenter extends BasePresenter
         if($this->getUser()->id){
             $logged="Logged In";
 
-        $this->context->api->createApiKey($this->getUser()->id);
-
+        $apikey=$this->context->api->createApiKey($this->getUser()->id);
+            $this->template->json = array(
+                "message" => $logged,
+                "api_key"=>$apikey
+            );
         }else{
             $logged="Authentication Failed";
+            $this->template->json = array(
+                "message" => $logged
+            );
         }
 
-        $this->template->mail=$mail;
+}
 
-        $this->template->json = array(
-            "message" => $logged
-        );
+
+
+    public function renderUser($api_key){
+
+        $userid=$this->context->api->getuserInfo($api_key);
+        if($userid){
+           $user_info= $this->context->settings->getAll($userid->customerid);
+
+            $this->template->json = array(
+                "status" => "ok",
+                "user_info"=>array(
+                    "name"=>$user_info->name,
+                    "mail"=>$user_info->mail,
+                    "address"=>$user_info->adress,
+                    "phone"=>$user_info->phone
+
+                )
+            );
+
+        }else{
+            $this->template->json = array(
+                "message" => "Authentication Failed"
+              );
+
+        }
+
 
 
 

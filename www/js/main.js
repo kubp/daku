@@ -56,7 +56,7 @@ $(".flash").slideToggle(200).delay(1000).slideToggle(200);
 
     //autocompl
     //$( "#new-projects" ).load( "/resources/load.html #projects li" );
-    $("input").keyup(function(){
+    $("#s").keyup(function(){
 
 
         $.get( "d/?s="+$("#s").val()+"", function( data ) {
@@ -80,6 +80,20 @@ $(".flash").slideToggle(200).delay(1000).slideToggle(200);
 
 
 
+    //Item buy
+    var firstattr=$(".buy-button").attr("href");
+    $(".m").hover(function (){
+
+        //alert($(".quantity").val());
+
+        var attrib=firstattr+"&q="+$(".quantity").val();
+
+
+        console.log(attrib);
+        $(".buy-button").attr("href",attrib);
+        //alert($(".buy-button").attr("href"));
+    });
+
 
 
     //Razeni
@@ -93,6 +107,70 @@ $(".flash").slideToggle(200).delay(1000).slideToggle(200);
     if(getQueryVariable("sort_by")) {
         $(".item-option select").val(getQueryVariable("sort_by"));
     }
+
+
+    var hash = window.location.hash.substr(1);
+    if (hash == "zakoupeno") {
+        $(".mini-cart").show();
+        $(".close").click(function () {
+            $(".mini-cart").hide();
+        });
+    }
+
+    $(".close").click(function(){
+        $(".mini-cart").hide();
+    });
+
+
+//HEADER
+   var v=0;
+    $(".contact-header").click(function(){
+
+
+       if(v==0) {
+           $(".contact-main").show();
+           $(".contact-inputs").show();
+           $("#contact").animate({"height": "320px"});
+       v=1;
+       }else{
+
+           $("#contact").animate({"height": "46px"});
+           $(".contact-main").hide();
+           $(".contact-inputs").hide();
+           v=0;
+       }
+
+    });
+
+
+    $(document).keypress(function(e) {
+        if(e.which == 13) {
+            send();
+        }
+    });
+
+
+    $(".c-e").click(function() {
+        send();
+    });
+
+    function send(){
+
+        text=$(".msg").val();
+        $(".contact-main").append("<span>"+text+"</span><div style='clear: both'></div>");
+        $(".msg").val("");
+        //socket.emit('send', { name: name, text:text });
+
+    }
+
+
+
+
+
+
+
+
+
 });
 
 

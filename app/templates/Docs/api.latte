@@ -82,8 +82,8 @@ line-height: 1.4em !important;
  <li><a href="#v1"><span class="n">/v1/</a></li>
   <li><a href="#items"><span class="n">/v1/</span><span class="r"> /items/</span><span class="a">:page</span> </a></li>
   <li><a href="#item"><span class="n">/v1/</span><span class="r"> /item/<span class="a">:id</span> </a></li>
-  <li><a href="#category"><span class="n">/v1/</span><span class="r">/category/</span><span class="a">:name</span> </a></li>
-  <li><a href="#user"><span class="n">/v1/</span><span class="r">/user/</span><span class="a">:key</span> </a></li>
+  <li><a href="#category"><span class="n">/v1/</span><span class="r">/category/</span><span class="a">:id</span> </a></li>
+  <li><a href="#login"><span class="n">/v1/</span><span class="r">/user/</span><span class="a">?key</span> </a></li>
 <li><a href="#user-buy"><span class="n">/v1/</span><span class="r">/user/</span><span class="a">:key</span><span class="r">/buy/</spam><span class="a">:id</span> </a></li>
 
 </ul>
@@ -102,9 +102,8 @@ line-height: 1.4em !important;
 
 {
     "api_version": "v1",
-    "app": "daku",
-    "documentation": "http://edaku.eu/api",
-    "status": "ok"
+    "status": "ok",
+    "documentation": "http://edaku.eu/docs/api"
 }
 
 </pre>
@@ -121,32 +120,17 @@ line-height: 1.4em !important;
 //Main API page
 
 {
-    "current_url": "http://api.edaku.eu/items",
+    "api_version": "v1",
     "status": "ok",
+    "documentation": "http://edaku.eu/docs/api",
     "items": [
         {
             "id": 1,
-            "name": "Levn\u00e9 PC",
-            "description": "asd das dasd as dsad s",
-            "price": 150,
-            "category": "Deve"
-        },
-        {
-            "id": 2,
-            "name": "Test",
-            "description": "saadsads a dsd asda d",
-            "price": 120,
-            "category": "Deve"
-        },
-        {
-            "id": 3,
-            "name": "Deb",
-            "description": " sad adasd as das d",
-            "price": 40,
-            "category": "Teste"
+            "name": "Akcni figurka",
+            "description": "Akcni figurka levna. Vyhodna cena a kvalita.",
+            "price": 50,
+            "category": "Levne"
         }
-
-
     ]
 }
 
@@ -162,13 +146,14 @@ line-height: 1.4em !important;
 //Main API page
 
 {
-    "current_url": "api.edaku.eu/item/",
+    "api_version": "v1",
+    "status": "ok",
+    "documentation": "http://edaku.eu/docs/api",
     "item_detail": {
-        "item_name": "Levn\u00e9 PC",
-        "description": "asd das dasd as dsad sad",
-        "price": 150,
-        "in_stock": 4,
-        "category": "Deve"
+        "item_name": "Akcni figurka",
+        "description": "Akcni figurka levna. Vyhodna cena a kvalita.",
+        "price": 50,
+        "in_stock": 10
     }
 }
 
@@ -178,60 +163,59 @@ line-height: 1.4em !important;
 
 
 <div class="url" id="category">
-/v1//category/:name
+/v1/category/:id
 </div>
 <div class="editor">
 <pre class="brush: js">
 //Main API page
 
+
 {
-    "current_url": "http://api.edaku.eu/items",
+    "api_version": "v1",
     "status": "ok",
+    "documentation": "http://edaku.eu/api",
     "items": [
         {
             "id": 1,
-            "name": "Levn\u00e9 PC",
-            "description": "asd das dasd as dsad s",
-            "price": 150
+            "name": "Akcni figurka",
+            "description": "Akcni figurka levna. Vyhodna cena a kvalita.",
+            "price": 50
         },
         {
             "id": 2,
-            "name": "Test",
-            "description": "saadsads a dsd asda d",
-            "price": 120
+            "name": "Zbozi",
+            "description": "kljasasj asdkl l sda",
+            "price": 40
         }
     ]
 }
-
 </pre>
 </div>
 
 
 
 
-<div class="url" id="user">
-/v1//user/:key
+
+<div class="url" id="login">
+/v1/user/?api_key=3c910510c065
 </div>
 <div class="editor">
 <pre class="brush: js">
-//Not yet
+{
+    "status": "ok",
+    "user_info": {
+        "name": "test@test.test",
+        "mail": "test@test.test",
+        "address": "",
+        "phone": ""
+    }
+}
 
+ERROR
 
-
-</pre>
-</div>
-
-
-
-
-<div class="url" id="user-buy">
-/v1//user/:key/buy/:id
-</div>
-<div class="editor">
-<pre class="brush: js">
-//Not yet
-
-
+{
+    "message": "Authentication Failed"
+}
 </pre>
 </div>
 

@@ -26,21 +26,35 @@ class ItemPresenter extends BasePresenter
 
     }
 
-    public function renderBuy($id,$itemname)
+    public function renderBuy($id,$itemname,$q)
     {
-        if (!$this->getUser()->isLoggedIn()) {
-            $this->flashMessage('Musíte se přihlásit', 'success');
-            $this->redirect('Item:default',$id,Strings::webalize($itemname));
+        if (isset($id,$itemname,$q)) {
+
+            if (!$this->getUser()->isLoggedIn()) {
+                $this->flashMessage('Musíte se přihlásit', 'success');
+                $this->redirect('Item:default', $id, Strings::webalize($itemname));
+            } else {
+
+                $check = $this->context->item->descItem($id,$q);
+
+                if($check){
+                    $this->context->item->buyItem($id, $this->getUser()->getIdentity()->data[0], $q);
+                }else{
+                    $this->flashMessage('Něco se stalo :(', 'error');
+                    $this->redirect('Item:default', $id, Strings::webalize($itemname));
+                }
+
+
+
+
+                $this->flashMessage('Děkujeme za nákup', 'success');
+                $this->redirect('Item:default#zakoupeno', $id, Strings::webalize($itemname));
+            }
         }else{
-
-            $this->context->item->buyItem($id, $this->getUser()->getIdentity()->data[0]);
-
-
-            $this->flashMessage('Děkujeme za nákup', 'success');
-            $this->redirect('Item:default',$id,Strings::webalize($itemname));
+            $this->flashMessage('Něco se stalo :(', 'error');
+            $this->redirect('Main:');
         }
     }
-
 
     public function renderRemove($id){
         if (!$this->getUser()->isLoggedIn()) {
