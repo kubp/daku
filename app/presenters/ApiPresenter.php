@@ -210,6 +210,57 @@ class ApiPresenter extends BasePresenter
 
     }
 
+    public function renderCart($api_key){
+
+        $userid=$this->context->api->getuserInfo($api_key);
+        if($userid){
+            $cart_id=$this->context->api->getUserCart($userid->customerid);
+            $cart_items=$this->context->api->getUserCartInfo($cart_id);
+
+            $cart_itm=array();
+            //for($i=0;$i<count($cart_items);$i++){
+             //   $cart_itm[]=$cart_items[$i]->list_id;
+            //}
+
+
+
+            $this->template->json = array(
+                "status"=>"ok",
+                "items" =>  $cart_items
+            );
+
+        }else{
+            $this->template->json = array(
+                "message" => "Authentication Failed"
+            );
+
+        }
+    }
+
+
+    public function renderBuy($itm,$api_key){
+
+        $userid=$this->context->api->getuserInfo($api_key);
+        if($userid){
+
+
+            $this->template->json = array(
+                "status"=>"ok",
+                "buy_item_id" => $itm
+            );
+
+        }else{
+            $this->template->json = array(
+                "message" => "Authentication Failed"
+            );
+
+        }
+    }
+
+
+
+
+
 
 
 }
