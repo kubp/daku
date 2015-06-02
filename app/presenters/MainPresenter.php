@@ -41,6 +41,13 @@ class MainPresenter extends BasePresenter
 
         $this->template->category=$category;
 
+        if ($this->getUser()->isLoggedIn()) {
+
+            $cart_items=$this->context->cart->itemsInCart($this->getUser()->getIdentity()->data[0]);;
+        $this->template->cart=$cart_items;
+
+        }
+
 
         $this->template->items = $data;
         if($this->getUser()->isLoggedIn()){

@@ -46,8 +46,11 @@ class ItemList extends MainModel{
 
 
 
-	public function removeItem($id,$cart){
-		$this->query("DELETE FROM list WHERE cart_id=$cart AND item_id=$id");
+	public function removeItem($id,$cart,$item_id){
+		$count = $this->findOneId("item",$item_id);
+		$quantity=$this->query("SELECT quantity FROM list WHERE cart_id=$cart AND list_id=$id")->fetch();
+		$this->query("DELETE FROM list WHERE cart_id=$cart AND list_id=$id");
+		$this->update("item", array("item_id" => $item_id), array("in_stock" => $count->in_stock+$quantity->quantity));
 	}
 
 

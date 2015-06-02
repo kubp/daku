@@ -54,7 +54,7 @@
 
                 <div class="cart">
                     <a n:href="Cart:"><i class="fa fa-shopping-cart fa-2x"></i></a>
-                    <div class="incart">5</div>
+                    <div class="incart">{ifset $cart->pocet}{$cart->pocet}{else}0{/ifset}</div>
                 </div>
 
                 <ul>
@@ -100,6 +100,17 @@
 	{include content}
 
     {block footer}
+    <script>
+
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', '/sl/?referer={ifset $_SERVER['HTTP_REFERER']}{$_SERVER['HTTP_REFERER']}{/ifset}&script={$_SERVER['REQUEST_URI']}', true);
+    xhr.onreadystatechange = function() {
+    };
+    xhr.send(null);
+    </script>
+
+
     <footer>
        <div>
         <a href="http://github.com/edaku"><img src="/img/github.png" width="35"></a>

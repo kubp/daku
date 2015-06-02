@@ -104,45 +104,28 @@ class ApiPresenter extends BasePresenter
         $data = $this->context->category->getAll($id);
         if (count($data)) {
 
-            if (count($data) > 1) {
-                for ($i = 1; $i < count($data) + 1; $i++) {
-                    $res[] = array(
-                        "id" => $data[$i]->item_id,
-                        "name" => $data[$i]->item_name,
-                        "description" => $data[$i]->description,
-                        "price" => $data[$i]->price
-                    );
-                }
 
-
-                $a = array(
-                    "api_version" => "v1",
-                    "status" => "ok",
-                    "documentation" => "http://edaku.eu/api",
-                    "items" => $res
-                );
-
-                $this->template->json = $a;
-            } else {
-                $data  = $data->fetch();
+            foreach($data as $item){
                 $res[] = array(
-                    "id" => $data->item_id,
-                    "name" => $data->item_name,
-                    "description" => $data->description,
-                    "price" => $data->price
+                    "id" => $item->item_id,
+                    "name" => $item->item_name,
+                    "description" => $item->description,
+                    "price" => $item->price
                 );
 
-                $a = array(
-                    "api_version" => "v1",
-                    "status" => "ok",
-                    "documentation" => "http://edaku.eu/api",
-                    "items" => $res
-                );
+            }
+            $a = array(
+                "api_version" => "v1",
+                "status" => "ok",
+                "documentation" => "http://edaku.eu/api",
+                "items" => $res
+            );
+
+
                 $this->template->json = $a;
             }
 
-
-        } else {
+         else {
 
 
 
@@ -238,7 +221,7 @@ class ApiPresenter extends BasePresenter
     }
 
 
-    public function renderBuy($itm,$api_key){
+    public function renderBuy($id,$api_key){
 
         $userid=$this->context->api->getuserInfo($api_key);
         if($userid){
@@ -246,7 +229,7 @@ class ApiPresenter extends BasePresenter
 
             $this->template->json = array(
                 "status"=>"ok",
-                "buy_item_id" => $itm
+                "buy_item_id" => $id
             );
 
         }else{

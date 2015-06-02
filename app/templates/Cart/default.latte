@@ -7,12 +7,12 @@
     <table class="cart-table">
     {foreach $cart as $item}
 
-   <tr><td  class="item-table"><img src="/img/nexus.jpg" width="100"></td>
+   <tr><td  class="item-table"> <img src="/images/items/{$item->item_id}.png" width="100"></td>
                <td>
                    <a n:href="Item:default $item->item_id,$item->item_name"> {$item->item_name} </a></td>
                <td> <input type="number" name="quantity" min="1" max="5" value="{$item->pocet}"></td>
                <td> {$item->price}kč</td>
-           <td class="remove"><a n:href="Item:remove $item->item_id">Odstranit</a></td>
+           <td class="remove"><a n:href="Item:remove $item->list_id,$item->item_id">Odstranit</a></td>
            </tr>
 
     {/foreach}
@@ -23,8 +23,8 @@
 
     </table>
 <div id="pay">
-    <input type="submit"  class="button white" value="Aktualizovat">
-    <input type="submit" class="button" value="Zaplatit">
+   <a n:href="Cart:default"> <input type="submit"  class="button white" value="Aktualizovat"></a>
+    <a n:href="Payment: "><input type="submit" class="button" value="Zaplatit"></a>
 
 
 </div>

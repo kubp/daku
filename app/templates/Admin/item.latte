@@ -24,6 +24,7 @@
 <div class="container">
 
 
+
 <div class="menu">
 <ul class="sub-menu">
 <li class="main-menu"><i class="fa fa-connectdevelop"></i>Main <i class="fa fa-chevron-up"></i>
@@ -71,36 +72,30 @@
 
 
 
-
-
 <div class="content">
 <div class="header">
 <h1>Dashboard</h1>
 </div>
 
 
-<div class="panel graph">
-<div class="panel-header">
-<h3>Graf přístupů</h3>
-</div>
-
-<div class="ct-chart ct-perfect-fourth"></div>
-
-
-</div>
 
 
 <div class="panel">
 <div class="panel-header">
-<h3>Graf přístupů</h3>
+<h3>Produkty</h3>
 </div>
 <table class="itm">
 
 <tr><th>Název produktu</th><th>Cena</th><th>Kategorie</th><th>Počet kusů</th></tr>
-{foreach $lastaccess as $access}
-<tr><td>{$access->date}</td><td>{$access->ip}</td><td>{$access->user}</td><td>{$access->script}</td></tr>
+
+  {foreach $data as $item}
+ <tr><td>{$item->item_name}</td><td>{$item->price}</td><td>{$item->category_name}</td>
+ <td>{$item->in_stock}</td></tr>
 
 {/foreach}
+
+
+
 
 </table>
 </div>
@@ -124,21 +119,6 @@
 
 
   <script type="text/javascript">
-
-  var data = {
-    // A labels array that can contain any sort of values
-    labels: [{foreach $datum as $day}{$day->datum},{/foreach}],
-    // Our series array that contains series objects or in this case series data arrays
-    series: [
-      [{foreach $datum as $day}{$day->navsteva},{/foreach}]
-    ]
-  };
-  
-
-  // Create a new line chart object where as first parameter we pass in a selector
-  // that is resolving to our chart container element. The Second parameter
-  // is the actual data object.
-  new Chartist.Line('.ct-chart', data);
 
 
 

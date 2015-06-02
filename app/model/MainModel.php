@@ -40,7 +40,9 @@ class MainModel extends \Nette\Object{
     protected function query($data){
         return $this->database->query($data);
     }
-
+    protected function queryBound($data,$bound=array()){
+        return $this->database->query($data,$bound);
+    }
 
 
 }

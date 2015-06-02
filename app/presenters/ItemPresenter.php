@@ -56,12 +56,12 @@ class ItemPresenter extends BasePresenter
         }
     }
 
-    public function renderRemove($id){
+    public function renderRemove($id,$item_id){
         if (!$this->getUser()->isLoggedIn()) {
             $this->error('Musíte se přihlásit');
         }else{
 
-            $this->context->item->removeItem($id, $this->getUser()->getIdentity()->data[0]);
+            $this->context->item->removeItem($id, $this->getUser()->getIdentity()->data[0],$item_id);
             $this->redirect("Cart:default");
 
             //$this->flashMessage('Děkujeme za nákup', 'success');

@@ -1,8 +1,104 @@
 {block content}
 
+  <div class="discount">
+  <div class="shadow"></div>
+  </div>
 
-{foreach $cat as $key => $item}
 
-{$item->item_name}{$item->price}
 
-{/foreach}z
+<div class="navigation dolu">
+    <span>Hlavní</span><span class="arrow">&gt;</span>
+    <span>Produkty</span><span class="arrow">&gt;</span>
+    <span class="last-item">Stránka 1 z 1</span>
+</div>
+
+
+<div id="shop-content">
+<div class="shop-head">{block title}<h1>Modely</h1>{/block}
+
+    <div class="item-option">
+        Setřídit podle:
+        <select name="ovoce">
+            <option value="price-desc">Ceny: Nejlevnější</option>
+               <option value="price-asc">Ceny: Nejdražší</option>
+            <option value="title" selected="selected">A - Z</option>
+        </select>
+
+    </div>
+  </div>
+    <div class="clear"></div>
+
+    <div id="items">
+
+    <div class="item" n:foreach="$items as $key => $item">
+        <a n:href="Item:default $item->item_id,$item->item_name">
+            <img src="images/items/{$item->item_id}.png" width="230" height="230">
+        </a>
+        <a n:href="Item:default $item->item_id,$item->item_name">{$item->item_name}</a>
+        <span class="title">{$item->category_name}</span>
+        <span class="price">{$item->price},-</span>
+
+    </div>
+
+
+
+
+
+        <div class="clear"></div>
+    </div>
+
+
+    <div class="clear"></div>
+</div>
+    <div class="page">
+        <ul><li><a href="asd">1</a></li>
+            <li><a href="asd">1</a></li>
+        </ul>
+
+    </div>
+
+
+<div id="contact">
+<div class="contact-header"><p>Potřebuji pomoc</p></div>
+<div class="contact-main">
+
+
+</div>
+
+<div class="contact-inputs">
+<input type="text" class="msg">
+<input type="submit" class="button c-e" value="Napsat">
+
+</div>
+
+</div>
+
+
+
+<script>
+function storePagePosition() {
+    var page_y = window.pageYOffset;
+    localStorage.setItem("page_y", page_y);
+}
+
+
+window.addEventListener("scroll", storePagePosition);
+
+
+var currentPageY;
+
+try {
+    currentPageY = localStorage.getItem("page_y");
+
+    if (currentPageY === undefined) {
+        localStorage.setItem("page_y");
+    }
+
+    window.scrollTo(0, currentPageY);
+} catch (e) {
+    // no localStorage available
+}
+</script>
+
+
+</div>

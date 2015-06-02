@@ -32,3 +32,5 @@ services:
 	cart: App\Model\Cart
 	search: App\Model\Search
 	api: App\Model\Api
+	access: App\Model\Access
+	admin: App\Model\Admin

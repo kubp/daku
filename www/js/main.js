@@ -164,7 +164,24 @@ $(".flash").slideToggle(200).delay(1000).slideToggle(200);
     }
 
 
+//PAYMENT
+    var price=150;
 
+
+
+    $(".shipping-price").text("+"+price+"kč");
+    $("#frm-paymentForm-shipping").change(function(){
+        var sort = ($(this).val());
+        if(sort==0){price=150;}
+        if(sort==1){price=100;}
+        if(sort==2){price=80;}
+        if(sort==3){price=0;}
+
+
+
+
+        $(".shipping-price").text("+"+price+"kč");
+    });
 
 
 
