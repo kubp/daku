@@ -46,6 +46,7 @@ class CategoryPresenter extends BasePresenter
 
         $this->template->category=$category;
 
+
         $this->template->id=$id;
         $this->template->category_name=$category_name;
 

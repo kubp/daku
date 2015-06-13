@@ -37,6 +37,10 @@ class MainPresenter extends BasePresenter
 
 
 
+
+        //$this->context->cartsession->setCart();
+
+
         $category = $this->context->category->getAllCategory();
 
         $this->template->category=$category;

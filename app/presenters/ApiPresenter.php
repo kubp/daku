@@ -101,7 +101,7 @@ class ApiPresenter extends BasePresenter
     }
     public function renderCategory($id)
     {
-        $data = $this->context->category->getAll($id);
+        $data = $this->context->category->getAllItemsBy("category_id",$id);
         if (count($data)) {
 
 

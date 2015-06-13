@@ -34,3 +34,4 @@ services:
 	api: App\Model\Api
 	access: App\Model\Access
 	admin: App\Model\Admin
+	cartsession: App\Model\CartSession

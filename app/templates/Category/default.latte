@@ -14,7 +14,7 @@
 
 
 <div id="shop-content">
-<div class="shop-head">{block title}<h1>Modely</h1>{/block}
+<div class="shop-head">{block title}<h1>Kategorie {$category_name}</h1>{/block}
 
     <div class="item-option">
         Setřídit podle:
@@ -32,7 +32,7 @@
 
     <div class="item" n:foreach="$items as $key => $item">
         <a n:href="Item:default $item->item_id,$item->item_name">
-            <img src="images/items/{$item->item_id}.png" width="230" height="230">
+            <img src="/images/items/{$item->item_id}.png" width="230" height="230">
         </a>
         <a n:href="Item:default $item->item_id,$item->item_name">{$item->item_name}</a>
         <span class="title">{$item->category_name}</span>
@@ -52,7 +52,7 @@
 </div>
     <div class="page">
         <ul><li><a href="asd">1</a></li>
-            <li><a href="asd">1</a></li>
+
         </ul>
 
     </div>
