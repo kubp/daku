@@ -31,18 +31,12 @@ class Authenticator extends Nette\Object implements Nette\Security\IAuthenticato
 
     }
 
-     $user_cart = $this->database->table("cart")->where(array("customer_id"=>$row->customer_id))->where("paid","false")->fetch();
+
         $admin = $this->database->table("customer")->where(array("customer_id"=>$row->customer_id))->where("admin","1")->fetch();
-        if(!$user_cart){
-            $cart=$this->database->table("customer")->where(array("mail"=>$username))->limit(1)->fetch();
-            $this->database->table("cart")->insert(array("customer_id"=>$cart, "paid"=>"false",
-                "date"=>time()));
-            $user_cart = $this->database->table("cart")->where(array("customer_id"=>$row->customer_id))->where("paid","false")->fetch();
-        }
         if($admin){
-            return new Nette\Security\Identity($row->customer_id,"user",array($user_cart->cart_id,$admin->customer_id));
+            return new Nette\Security\Identity($row->customer_id,"user",array($admin->customer_id));
         }else{
-            return new Nette\Security\Identity($row->customer_id,"user",array($user_cart->cart_id));
+            return new Nette\Security\Identity($row->customer_id,"user");
         }
 
     }

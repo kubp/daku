@@ -8,7 +8,7 @@ class Settings extends MainModel{
 
     public function getAll($userID){
 
-        $userinfo = $this->findOneId("customer",array("customer_id"=>$userID));
+        $userinfo = $this->findBy("customer",array("customer_id"=>$userID))->limit(1)->fetch();
 
         return $userinfo;
     }
@@ -19,6 +19,7 @@ class Settings extends MainModel{
 
         return $userinfo;
     }
+
 
 
 

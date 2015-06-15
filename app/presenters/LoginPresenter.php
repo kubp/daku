@@ -48,6 +48,10 @@ class LoginPresenter extends BasePresenter
             $this->flashMessage('Špatný login nebo heslo', 'error');
         }
         if($this->getUser()->id){
+                $cart_id=$this->context->cart->noCart($this->getUser()->id);
+                $this->context->cartsession->setCart($cart_id);
+
+
             $this->flashMessage('Byl jste úspěšně přihlášen', 'success');
         }
 

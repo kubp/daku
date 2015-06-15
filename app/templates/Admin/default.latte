@@ -92,13 +92,14 @@
 
 <div class="panel">
 <div class="panel-header">
-<h3>Graf přístupů</h3>
+<h3>Seznam přístupů</h3>
 </div>
 <table class="itm">
 
-<tr><th>Název produktu</th><th>Cena</th><th>Kategorie</th><th>Počet kusů</th></tr>
+<tr><th>Datum</th><th>IP</th><th>ID uživatele</th><th>URl</th></tr>
 {foreach $lastaccess as $access}
-<tr><td>{$access->date}</td><td>{$access->ip}</td><td>{$access->user}</td><td>{$access->script}</td></tr>
+<tr><td>{$access->date}</td><td>{$access->ip}</td><td>{$access->user}</td>
+<td>{str_replace('"',"",$access->script)}</td></tr>
 
 {/foreach}
 

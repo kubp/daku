@@ -19,7 +19,7 @@ class AdminPresenter extends BasePresenter
     }
     public function renderDefault()
     {
-        if(isset($this->getUser()->getIdentity()->data[1])){
+        if(isset($this->getUser()->getIdentity()->data[0])){
             $this->template->a="logged";
         }else{
             $this->flashMessage('Pravděpodobně nemáte oprávnění :(', 'error');
@@ -45,7 +45,7 @@ class AdminPresenter extends BasePresenter
         $data=$this->ItemListModel->getAllItems();
         $this->template->data=$data;
 
-        if(!isset($this->getUser()->getIdentity()->data[1])){
+        if(!isset($this->getUser()->getIdentity()->data[0])){
             $this->flashMessage('Pravděpodobně nemáte oprávnění :(', 'error');
             $this->redirect('Main:');
         }
@@ -54,7 +54,7 @@ class AdminPresenter extends BasePresenter
 
     public function renderCustomers(){
         $this->template->users=$this->context->admin->getCustomers();
-        if(!isset($this->getUser()->getIdentity()->data[1])){
+        if(!isset($this->getUser()->getIdentity()->data[0])){
             $this->flashMessage('Pravděpodobně nemáte oprávnění :(', 'error');
             $this->redirect('Main:');
         }
@@ -64,7 +64,7 @@ class AdminPresenter extends BasePresenter
     {
         $this->template->orders = $this->context->admin->getOrders();
 
-        if(!isset($this->getUser()->getIdentity()->data[1])){
+        if(!isset($this->getUser()->getIdentity()->data[0])){
             $this->flashMessage('Pravděpodobně nemáte oprávnění :(', 'error');
             $this->redirect('Main:');
         }

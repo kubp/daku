@@ -26,8 +26,9 @@ class PaymentPresenter extends BasePresenter
             $this->redirect('Login:default');
         }
 
-        $this->template->cart = $this->cartModel->getAllItems($this->getUser()->getIdentity()->data[0]);
-        $this->template->total_price=$this->cartModel->getTotalPrice($this->getUser()->getIdentity()->data[0]);
+
+        $this->template->cart = $this->cartModel->getAllItems($this->context->cartsession->getCart());
+        $this->template->total_price=$this->cartModel->getTotalPrice($this->context->cartsession->getCart());
 
 
 
@@ -59,17 +60,29 @@ class PaymentPresenter extends BasePresenter
     public function paymentFormSucceeded($form, $values)
     {
 
-        $this->cartModel->pay($this->getUser()->id, $this->getUser()->getIdentity()->data[0],$values['name'],
+        $this->cartModel->pay($this->getUser()->id, $this->context->cartsession->getCart(),$values['name'],
         $values['address'],$values['postal'],$values['shipping'],$values['zprava']);
+
+        $user_mail=$this->context->settings->getAll($this->getUser()->id);
+        //$user_mail->mail
+
+        //echo "http://mail.edaku.eu/buy.php?email=".$user_mail->mail."";
+        file_get_contents("http://mail.edaku.eu/buy.php?email=".$user_mail->mail."");
+
+
+        $this->cartModel->removeCart($this->context->cartsession->getCart());
+
+        $cart_id=$this->context->cart->noCart($this->getUser()->id);
+        $this->context->cartsession->setCart($cart_id);
 
         $this->flashMessage('Děkujeme Vám za nákup', 'success');
         $this->redirect('Main:default');
 
-        /*
+
         if($this->getUser()->id){
             $this->flashMessage('Byl jste úspěšně přihlášen', 'success');
         }
-        */
+
         //$this->redirect('Main:default');
 
     }

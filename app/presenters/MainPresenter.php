@@ -37,8 +37,10 @@ class MainPresenter extends BasePresenter
 
 
 
+        //$this->getUser()->getId()
 
-        //$this->context->cartsession->setCart();
+        //echo $this->context->cartsession->getCart();
+
 
 
         $category = $this->context->category->getAllCategory();
@@ -47,7 +49,7 @@ class MainPresenter extends BasePresenter
 
         if ($this->getUser()->isLoggedIn()) {
 
-            $cart_items=$this->context->cart->itemsInCart($this->getUser()->getIdentity()->data[0]);;
+            $cart_items=$this->context->cart->itemsInCart($this->context->cartsession->getCart());;
         $this->template->cart=$cart_items;
 
         }

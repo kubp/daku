@@ -33,6 +33,28 @@ class Cart extends MainModel{
                               WHERE list.cart_id =?",$cart)->fetch();
     }
 
+    public function removeCart($cart_id){
+        $this->update("cart",array("cart_id"=>$cart_id),array("paid"=>"true"));
+    }
+
+    public function noCart($user_id){
+        //$row = $this->findAll("customer")->where(array("mail"=>$user_id))->limit(1)->fetch();
+        //echo $row->customer_id;
+        $user_cart = $this->findAll("cart")->where(array("customer_id"=>$user_id))->where("paid","false")->fetch();
+
+
+
+        if(!$user_cart){
+
+            $this->insert("cart",array("customer_id"=>$user_id, "paid"=>"false",
+                "date"=>time()));
+            $user_cart = $this->findAll("cart")->where(array("customer_id"=>$user_id))->where("paid","false")->fetch();
+        }
+
+        return $user_cart->cart_id;
+
+    }
+
 }
 
 

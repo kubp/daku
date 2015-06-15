@@ -2,8 +2,7 @@
 namespace App\Model;
 use Nette, Nette\Security;
 
-
-class CartSession extends MainModel{
+class CartSession{
 
     /** @var Nette\Http\Session */
     private $session;
@@ -18,15 +17,25 @@ class CartSession extends MainModel{
         // a získáme přístup do sekce 'mySection':
         $this->sessionSection = $session->getSection("cart");
     }
-    public function setCart(){
-        $this->sessionSection->dsa="asasdd";
-        echo $this->sessionSection->dsa;
+
+
+
+    public function setCart($user_id){
+        $this->sessionSection->cartid=$user_id;
+
+
     }
+
 
     public function getCart(){
 
-        return $this->sessionSection->dsa;
+        if($this->sessionSection->cartid){
+            return $this->sessionSection->cartid;
+        }else{
+            return false;
+        }
     }
+
 
 
 

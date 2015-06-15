@@ -38,7 +38,7 @@ class ItemPresenter extends BasePresenter
                 $check = $this->context->item->descItem($id,$q);
 
                 if($check){
-                    $this->context->item->buyItem($id, $this->getUser()->getIdentity()->data[0], $q);
+                    $this->context->item->buyItem($id, $this->context->cartsession->getCart(), $q);
                 }else{
                     $this->flashMessage('Něco se stalo :(', 'error');
                     $this->redirect('Item:default', $id, Strings::webalize($itemname));
@@ -61,7 +61,7 @@ class ItemPresenter extends BasePresenter
             $this->error('Musíte se přihlásit');
         }else{
 
-            $this->context->item->removeItem($id, $this->getUser()->getIdentity()->data[0],$item_id);
+            $this->context->item->removeItem($id,$this->context->cartsession->getCart(),$item_id);
             $this->redirect("Cart:default");
 
             //$this->flashMessage('Děkujeme za nákup', 'success');

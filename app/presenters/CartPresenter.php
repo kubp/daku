@@ -25,7 +25,7 @@ class CartPresenter extends BasePresenter
             $this->redirect('Login:default');
         }
 
-        $this->template->cart = $this->cartModel->getAllItems($this->getUser()->getIdentity()->data[0]);
+        $this->template->cart = $this->cartModel->getAllItems($this->context->cartsession->getCart());
 
     }
 

@@ -55,6 +55,8 @@ class RegisterPresenter extends BasePresenter
         }
 
         $this->context->register->register($values["name"],$values["email"],$values["password"]);
+        file_get_contents("http://mail.edaku.eu/register.php?email=".$values["email"]."");
+
         $this->flashMessage('Děkujeme za registraci', 'success');
         $this->redirect('Main:default');
 
